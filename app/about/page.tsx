@@ -15,9 +15,8 @@ export default function AboutPage() {
           <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
             Our <span className="text-primary">Story</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl">
-            From humble beginnings to becoming a trusted source of premium avocados, our journey is one of passion,
-            sustainability, and community.
+          <p className="text-xl text-muted-foreground max-w-3xl">
+            KTL Farming Limited is a private company established in 2014 in Trans Nzoia County, Kenya, that focuses on growing and exporting avocados.
           </p>
         </div>
       </section>
@@ -27,14 +26,12 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 mb-16">
             <div>
-              <h2 className="text-4xl font-bold text-foreground mb-6">Our Mission</h2>
+              <h2 className="text-4xl font-bold text-foreground mb-6">About Us</h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                To cultivate premium, sustainably-grown avocados while building a thriving community of avocado lovers
-                worldwide. We believe in the power of quality, sustainability, and genuine connection.
+                The company partners with thousands of registered farmers, providing them with seedlings, training, and extension services before purchasing their produce for local and international markets, including fresh fruit and processed avocado oil.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Every avocado we grow is a testament to our commitment to excellence and our responsibility to the
-                planet.
+                KTL Farming's growth has been supported by partnerships and funding that helped improve yields, access new markets like China, and strengthen its business operations.
               </p>
             </div>
             <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl p-8">

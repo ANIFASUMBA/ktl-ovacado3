@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Facebook, Instagram, Twitter, Mail } from "lucide-react"
+import { Facebook } from "lucide-react"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -12,7 +12,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <img 
-                src="/KTL.jpg" 
+                src="/logo.jpg" 
                 alt="KTL Farming Limited" 
                 className="h-10 w-auto object-contain"
               />
@@ -35,11 +35,6 @@ export default function Footer() {
               <li>
                 <Link href="/products" className="text-background/80 hover:text-background transition-colors">
                   Products
-                </Link>
-              </li>
-              <li>
-                <Link href="/recipes" className="text-background/80 hover:text-background transition-colors">
-                  Recipes
                 </Link>
               </li>
               <li>
@@ -83,15 +78,6 @@ export default function Footer() {
             <div className="flex gap-4">
               <a href="#" className="p-2 bg-background/20 rounded-lg hover:bg-background/30 transition-colors">
                 <Facebook size={20} />
-              </a>
-              <a href="#" className="p-2 bg-background/20 rounded-lg hover:bg-background/30 transition-colors">
-                <Instagram size={20} />
-              </a>
-              <a href="#" className="p-2 bg-background/20 rounded-lg hover:bg-background/30 transition-colors">
-                <Twitter size={20} />
-              </a>
-              <a href="#" className="p-2 bg-background/20 rounded-lg hover:bg-background/30 transition-colors">
-                <Mail size={20} />
               </a>
             </div>
           </div>

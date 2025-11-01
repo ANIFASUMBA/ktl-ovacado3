@@ -168,4 +168,82 @@
       transform: scale(1);
     }
   }
+
+  /* Gradient animation for text */
+  .animate-gradient {
+    background-size: 200% auto;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0%, 100% {
+      background-position: 0% center;
+    }
+    50% {
+      background-position: 100% center;
+    }
+  }
+
+  /* Floating animation */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  /* Shimmer effect */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  /* Glow effect */
+  .glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px rgba(var(--primary), 0.2),
+                  0 0 20px rgba(var(--primary), 0.2),
+                  0 0 30px rgba(var(--primary), 0.2);
+    }
+    to {
+      box-shadow: 0 0 20px rgba(var(--primary), 0.4),
+                  0 0 30px rgba(var(--primary), 0.4),
+                  0 0 40px rgba(var(--primary), 0.4);
+    }
+  }
 }

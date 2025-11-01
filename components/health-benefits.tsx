@@ -1,6 +1,7 @@
 "use client"
 
 import { Heart, Brain, Zap, Shield } from "lucide-react"
+import { useEffect, useState } from "react"
 
 const benefits = [
   {
@@ -26,12 +27,22 @@ const benefits = [
 ]
 
 export default function HealthBenefits() {
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    setIsVisible(true)
+  }, [])
+
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-br from-primary/5 to-secondary/5">
+    <section className="relative overflow-hidden py-20 md:py-28 bg-gradient-to-br from-primary/5 to-secondary/5">
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute -top-24 -right-24 w-[26rem] h-[26rem] bg-primary/10 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-24 -left-24 w-[26rem] h-[26rem] bg-secondary/10 rounded-full blur-3xl"></div>
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Nutritional <span className="text-primary">Powerhouse</span>
+            Nutritional <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Powerhouse</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Discover why avocados are nature's perfect superfood
@@ -44,10 +55,11 @@ export default function HealthBenefits() {
             return (
               <div
                 key={index}
-                className="p-8 bg-card rounded-xl border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-2"
+                className={`group p-8 bg-card rounded-xl border border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-secondary/10 hover:-translate-y-2 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                style={{ transitionDelay: `${index * 150}ms` }}
               >
-                <div className="mb-4 inline-block p-3 bg-secondary/20 rounded-lg">
-                  <Icon className="w-6 h-6 text-secondary" />
+                <div className="mb-4 inline-block p-3 bg-secondary/20 rounded-lg transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 group-hover:bg-secondary/30">
+                  <Icon className="w-6 h-6 text-secondary group-hover:animate-pulse" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-3">{benefit.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{benefit.description}</p>

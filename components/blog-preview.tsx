@@ -42,7 +42,7 @@ export default function BlogPreview() {
             Latest from Our <span className="text-primary">Blog</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Farming tips, recipes, and stories from our community
+            Farming tips and stories from our community
           </p>
         </div>
 

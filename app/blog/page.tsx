@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
-import { Calendar, User, Search } from "lucide-react"
+import { Calendar, User } from "lucide-react"
 
 const blogPosts = [
   {
@@ -13,7 +13,7 @@ const blogPosts = [
       "Learn how we implement regenerative agriculture to maintain soil health and biodiversity while producing premium avocados.",
     author: "Maria Garcia",
     date: "Oct 15, 2024",
-    image: "/avocado-farm-sustainable-agriculture.jpg",
+    image: "/trees.jpg",
     category: "Farming",
     content: `Sustainable farming is at the heart of everything we do. Our commitment to regenerative agriculture goes beyond just growing avocados—it's about nurturing the land for future generations.
 
@@ -43,7 +43,7 @@ Join us in supporting sustainable agriculture!`,
       "Expert tips on selecting ripe avocados and keeping them fresh for longer. Learn the secrets from our farmers.",
     author: "James Chen",
     date: "Oct 10, 2024",
-    image: "/fresh-avocados-selection-ripeness.jpg",
+    image: "/hass-avocados-fresh-organic.jpg",
     category: "Tips",
     content: `Choosing the perfect avocado is an art and a science. Here's everything you need to know to select and store avocados like a pro.
 
@@ -75,7 +75,7 @@ Join us in supporting sustainable agriculture!`,
       "Follow our avocado trees through the complete growing cycle and discover what it takes to produce premium fruit.",
     author: "Sofia Rodriguez",
     date: "Oct 5, 2024",
-    image: "/avocado-orchard-harvest-season.jpg",
+    image: "/mixed-avocado-varieties-assorted.jpg",
     category: "Stories",
     content: `Growing premium avocados is a year-long journey. Here's what happens in our orchards throughout the seasons.
 
@@ -112,20 +112,101 @@ export default function BlogPage() {
       post.category.toLowerCase().includes(searchTerm.toLowerCase()),
   )
 
+  const featuredPost = blogPosts[0]
+  const otherPosts = blogPosts.slice(1, 3)
+
   return (
     <main className="min-h-screen bg-background">
       <Navigation />
 
       {/* Header */}
-      <section className="bg-gradient-to-br from-primary/10 to-secondary/10 py-12">
+      <section className="py-16 md:py-24 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Our <span className="text-primary">Blog</span>
-          </h1>
-          <p className="text-lg text-muted-foreground">Farming tips, recipes, and stories from our community</p>
+          <div className="mb-8">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground">
+              Our <span className="text-primary">Blog</span>
+            </h1>
+            <p className="text-lg text-muted-foreground">Farming tips, orchard stories and avocado inspiration.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <article onClick={() => setSelectedPost(featuredPost)} className="relative md:col-span-2 rounded-2xl overflow-hidden border border-border group cursor-pointer">
+              <img src={featuredPost.image || "/placeholder.svg"} alt={featuredPost.title} className="w-full h-[22rem] md:h-[28rem] object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                <div className="mb-3">
+                  <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">{featuredPost.category}</span>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{featuredPost.title}</h3>
+                <div className="text-white/80 text-sm flex gap-4">
+                  <span className="flex items-center gap-2"><User size={16} />{featuredPost.author}</span>
+                  <span className="flex items-center gap-2"><Calendar size={16} />{featuredPost.date}</span>
+                </div>
+              </div>
+              <div className="absolute -top-8 -right-8 w-24 h-24 bg-primary/20 rounded-full blur-2xl" aria-hidden="true" />
+            </article>
+
+            <div className="flex flex-col gap-8">
+              {otherPosts.map((post) => (
+                <article key={post.id} onClick={() => setSelectedPost(post)} className="relative rounded-2xl overflow-hidden border border-border group cursor-pointer">
+                  <img src={post.image || "/placeholder.svg"} alt={post.title} className="w-full h-44 object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <div className="mb-2">
+                      <span className="px-2.5 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">{post.category}</span>
+                    </div>
+                    <h4 className="text-lg font-semibold text-white line-clamp-2">{post.title}</h4>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
+
+      <section className="py-16 md:py-24 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-start gap-8 mb-10">
+            <div className="md:flex-1">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Our <span className="text-primary">Posts</span></h2>
+              <p className="text-muted-foreground">Stories, tips and news from our avocado world.</p>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <article onClick={() => setSelectedPost(featuredPost)} className="relative md:col-span-2 rounded-2xl overflow-hidden border border-border group cursor-pointer">
+              <img src={featuredPost.image || "/placeholder.svg"} alt={featuredPost.title} className="w-full h-[22rem] md:h-[28rem] object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                <div className="mb-3">
+                  <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">{featuredPost.category}</span>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{featuredPost.title}</h3>
+                <div className="text-white/80 text-sm flex gap-4">
+                  <span className="flex items-center gap-2"><User size={16} />{featuredPost.author}</span>
+                  <span className="flex items-center gap-2"><Calendar size={16} />{featuredPost.date}</span>
+                </div>
+              </div>
+            </article>
+
+            <div className="flex flex-col gap-8">
+              {otherPosts.map((post) => (
+                <article key={post.id} onClick={() => setSelectedPost(post)} className="relative rounded-2xl overflow-hidden border border-border group cursor-pointer">
+                  <img src={post.image || "/placeholder.svg"} alt={post.title} className="w-full h-44 object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <div className="mb-2">
+                      <span className="px-2.5 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">{post.category}</span>
+                    </div>
+                    <h4 className="text-lg font-semibold text-white line-clamp-2">{post.title}</h4>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
